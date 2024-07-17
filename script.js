@@ -82,6 +82,8 @@ const displayMovements = function (movements) {
 
 displayMovements(account1.movements);
 
+
+// MAPS
 const createUsernames = function (accs) {
 
   accs.forEach(function (acc) {
@@ -96,8 +98,27 @@ createUsernames(accounts);
 console.log(accounts);
 
 
+// FILTER
+
+const deposits = account1.movements.filter(function (mov) {
+  return mov > 0;
+});
+console.log(movements);
+console.log(deposits);
+
+// const deposits = account1.movements.filter(mov => mov > 0);
+// console.log(account1.movements);
+// console.log(deposits);
 
 
+const withdrawals = account1.movements.filter(mov => mov < 0);
+
+console.log(withdrawals);
+
+
+// REDUCE
+
+const balance = account1.movements.reduce((acc, mov) => acc + mov, 0);
 
 
 
