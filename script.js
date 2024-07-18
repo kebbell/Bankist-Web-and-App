@@ -80,12 +80,10 @@ const displayMovements = function (movements) {
   });
 };
 
-
-const calcDisplayBalance = function (movements) {
-  const balance = movements.reduce((acc, mov) => acc + mov, 0);
+const calcDisplayBalance = function (acc) {
+  const balance = acc.reduce((acc, mov) => acc + mov, 0);
   labelBalance.textContent = `${balance}€`;
 };
-
 
 const calcDisplaySummary = function (acc) {
   const incomes = acc.movements
@@ -164,10 +162,12 @@ btnLogin.addEventListener('click', function (e) {
   // Prevent form from submitting
   e.preventDefault();
   // console.log('LOGIN');
-  currentAccount = accounts.find( acc => acc.username === inputLoginUsername.value);
+  currentAccount = accounts.find(
+    acc => acc.username === inputLoginUsername.value
+  );
   console.log(currentAccount);
 
-  if(currentAccount?.pin === Number(inputLoginPin.value)) {
+  if (currentAccount?.pin === Number(inputLoginPin.value)) {
     // Display UI and message
     labelWelcome.textContent = `Welcome back, ${
       currentAccount.owner.split(' ')[0]
@@ -179,20 +179,16 @@ btnLogin.addEventListener('click', function (e) {
     inputLoginPin.blur();
 
     // Update UI
-    
+
     // Display movements
     displayMovements(currentAccount.movements);
 
+    // Display Balance
+    calcDisplayBalance(currentAccount);
 
-  // Display Balance
-  calcDisplayBalance(currentAccount.movements);
-
-  // Display Summary
-  calcDisplaySummary(currentAccount);
-
-
+    // Display Summary
+    calcDisplaySummary(currentAccount);
   }
-
 });
 
 btnTransfer.addEventListener('click', function (e) {
@@ -201,8 +197,21 @@ btnTransfer.addEventListener('click', function (e) {
   const receiverAcc = accounts.find(
     acc => acc.username === inputTransferTo.value
   );
-  inputTransferAmount.value = inputTransferTo.value = '';
 
+  if (
+    amount > 0 &&
+    currentAccount.balance >= amount &&
+    receiverAcc &&
+    receiverAcc?.username !== currentAccount.username
+  ) {
+    // Doing the transfer
+    currentAccount.movements.push(-amount);
+    receiverAcc.movements.push(amount);
+    // Update UI
+    updateUI(currentAccount);
+  }
+});
+inputTransferAmount.value = inputTransferTo.value = '';
 
 
 
