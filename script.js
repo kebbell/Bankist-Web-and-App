@@ -156,18 +156,16 @@ const max = account1.movements.reduce(
 );
 console.log(max);
 
-
 const updateUI = function (acc) {
-      // Display movements
-      displayMovements(acc.movements);
+  // Display movements
+  displayMovements(acc.movements);
 
-      // Display Balance
-      calcDisplayBalance(acc);
-  
-      // Display Summary
-      calcDisplaySummary(acc);
-}
+  // Display Balance
+  calcDisplayBalance(acc);
 
+  // Display Summary
+  calcDisplaySummary(acc);
+};
 
 // Event handlers
 let currentAccount;
@@ -204,6 +202,8 @@ btnTransfer.addEventListener('click', function (e) {
     acc => acc.username === inputTransferTo.value
   );
 
+  inputTransferAmount.value = inputTransferTo.value = '';
+
   if (
     amount > 0 &&
     currentAccount.balance >= amount &&
@@ -213,14 +213,11 @@ btnTransfer.addEventListener('click', function (e) {
     // Doing the transfer
     currentAccount.movements.push(-amount);
     receiverAcc.movements.push(amount);
+
     // Update UI
     updateUI(currentAccount);
   }
 });
-// inputTransferAmount.value = inputTransferTo.value = '';
-
-
-
 
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
