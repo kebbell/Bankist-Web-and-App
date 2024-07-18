@@ -87,20 +87,20 @@ const calcDisplayBalance = function (movements) {
 };
 
 
-const calcDisplaySummary = function (movements) {
-  const incomes = movements
+const calcDisplaySummary = function (acc) {
+  const incomes = acc.movements
     .filter(mov => mov > 0)
     .reduce((acc, mov) => acc + mov, 0);
   labelSumIn.textContent = `${incomes}€`;
 
-  const out = movements
+  const out = acc.movements
     .filter(mov => mov < 0)
     .reduce((acc, mov) => acc + mov, 0);
   labelSumOut.textContent = `${Math.abs(out)}€`; // Math.abs will remove the negative sign
 
-  const interest = movements
+  const interest = acc.movements
     .filter(mov => mov > 0)
-    .map(deposit => (deposit * 0.7) / 100)
+    .map(deposit => (deposit * acc.interestRate) / 100)
     .filter((int, i, arr) => {
       console.log(arr);
       return int >= 1;
@@ -173,6 +173,12 @@ btnLogin.addEventListener('click', function (e) {
       currentAccount.owner.split(' ')[0]
     }`;
     containerApp.style.opacity = 100;
+
+    // Clear input fields
+    inputLoginUsername.value = inputLoginPin.value = '';
+    inputLoginPin.blur();
+
+    // Update UI
     
     // Display movements
     displayMovements(currentAccount.movements);
@@ -182,15 +188,16 @@ btnLogin.addEventListener('click', function (e) {
   calcDisplayBalance(currentAccount.movements);
 
   // Display Summary
-  calcDisplaySummary(currentAccount.movements);
+  calcDisplaySummary(currentAccount);
 
 
   }
 
+});
 
 
 
-//
+
 
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
@@ -292,11 +299,11 @@ movements.forEach(function (mov, i, arr) {
 
 // Maps
 
-const currencies = new Map([
-  ['USD', 'United States dollar'],
-  ['EUR', 'Euro'],
-  ['GBP', 'Pound sterling'],
-]);
+// const currencies = new Map([
+//   ['USD', 'United States dollar'],
+//   ['EUR', 'Euro'],
+//   ['GBP', 'Pound sterling'],
+// ]);
 
 // currencies.forEach(function (value, key, map) {
 //   console.log(`${key}: ${value}`);
