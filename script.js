@@ -81,8 +81,9 @@ const displayMovements = function (movements) {
 };
 
 const calcDisplayBalance = function (acc) {
-  const balance = acc.reduce((acc, mov) => acc + mov, 0);
-  labelBalance.textContent = `${balance}€`;
+  const balance = acc.movements.reduce((acc, mov) => acc + mov, 0);
+  acc.balance = balance;
+  labelBalance.textContent = `${acc.balance}€`;
 };
 
 const calcDisplaySummary = function (acc) {
@@ -155,6 +156,19 @@ const max = account1.movements.reduce(
 );
 console.log(max);
 
+
+const updateUI = function (acc) {
+      // Display movements
+      displayMovements(acc.movements);
+
+      // Display Balance
+      calcDisplayBalance(acc);
+  
+      // Display Summary
+      calcDisplaySummary(acc);
+}
+
+
 // Event handlers
 let currentAccount;
 
@@ -179,15 +193,7 @@ btnLogin.addEventListener('click', function (e) {
     inputLoginPin.blur();
 
     // Update UI
-
-    // Display movements
-    displayMovements(currentAccount.movements);
-
-    // Display Balance
-    calcDisplayBalance(currentAccount);
-
-    // Display Summary
-    calcDisplaySummary(currentAccount);
+    updateUI(currentAccount);
   }
 });
 
@@ -211,7 +217,7 @@ btnTransfer.addEventListener('click', function (e) {
     updateUI(currentAccount);
   }
 });
-inputTransferAmount.value = inputTransferTo.value = '';
+// inputTransferAmount.value = inputTransferTo.value = '';
 
 
 
