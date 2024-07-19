@@ -202,8 +202,6 @@ btnTransfer.addEventListener('click', function (e) {
     acc => acc.username === inputTransferTo.value
   );
 
-  inputTransferAmount.value = inputTransferTo.value = '';
-
   if (
     amount > 0 &&
     currentAccount.balance >= amount &&
@@ -216,6 +214,8 @@ btnTransfer.addEventListener('click', function (e) {
 
     // Update UI
     updateUI(currentAccount);
+
+    inputTransferAmount.value = inputTransferTo.value = '';
   }
 });
 
@@ -230,10 +230,10 @@ btnClose.addEventListener('click', function (e) {
     );
     console.log(index);
     // .indexOf(23)
+
+    accounts.splice(index, 1);
   }
 });
-
-
 
 
 
