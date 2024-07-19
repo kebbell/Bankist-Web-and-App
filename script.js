@@ -219,6 +219,28 @@ btnTransfer.addEventListener('click', function (e) {
   }
 });
 
+btnLoan.addEventListener('click', function (e) {
+  e.preventDefault(); // prevent form from submitting
+
+  const amount = Number(inputLoanAmount.value);
+
+  // SOME TO TEST FOR SOMETHING
+  if (amount > 0 && currentAccount.movements.some(mov => mov >= amount * 0.1)) {
+    // Add movement
+    currentAccount.movements.push(amount);
+
+    // Update UI
+    updateUI(currentAccount);
+
+    // Reset the input field
+    inputLoanAmount.value = '';
+
+    // console.log('LOAN');
+  } else {
+    console.log('Not enough money!');   
+  }
+});
+
 btnClose.addEventListener('click', function (e) {
   e.preventDefault();
   if (
@@ -234,9 +256,6 @@ btnClose.addEventListener('click', function (e) {
     accounts.splice(index, 1);
   }
 });
-
-
-
 
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
