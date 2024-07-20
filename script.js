@@ -266,19 +266,6 @@ btnClose.addEventListener('click', function (e) {
 // const overaLlBalance = allMovements.reduce((acc, mov) => acc + mov, 0);
 
 
-// flat
-const overallBalance = accounts
-  .map(acc => acc.movements) // MAP RETURNS AN ARRAY (ALL ACCOUNTS TO 1 ARRAY)
-  .flat() // FLATTENS THE ARRAY INTO 1
-  .reduce((acc, mov) => acc + mov, 0); // 0 SPECIFIES WHERE THE ACCUMULATOR STARTS AND REDUCES ALL THE 1 TOTAL 
-
-// flatMap
-const overallBalance2 = accounts
-  .flatMap(acc => acc.movements) // flatMap can only go 1 level deep
-  .reduce((acc, mov) => acc + mov, 0);
-console.log(overallBalance2);
-
-
 
 
 
