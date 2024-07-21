@@ -207,7 +207,7 @@ btnLogin.addEventListener('click', function (e) {
   );
   console.log(currentAccount);
 
-  if (currentAccount?.pin === Number(inputLoginPin.value)) {
+  if (currentAccount?.pin === +(inputLoginPin.value)) {
     // Display UI and message
     labelWelcome.textContent = `Welcome back, ${
       currentAccount.owner.split(' ')[0]
@@ -225,7 +225,7 @@ btnLogin.addEventListener('click', function (e) {
 
 btnTransfer.addEventListener('click', function (e) {
   e.preventDefault();
-  const amount = Number(inputTransferAmount.value);
+  const amount = +(inputTransferAmount.value);
   const receiverAcc = accounts.find(
     acc => acc.username === inputTransferTo.value
   );
@@ -250,7 +250,7 @@ btnTransfer.addEventListener('click', function (e) {
 btnLoan.addEventListener('click', function (e) {
   e.preventDefault(); // prevent form from submitting
 
-  const amount = Number(inputLoanAmount.value);
+  const amount = +(inputLoanAmount.value);
 
   // SOME TO TEST FOR SOMETHING
   if (amount > 0 && currentAccount.movements.some(mov => mov >= amount * 0.1)) {
@@ -273,7 +273,7 @@ btnClose.addEventListener('click', function (e) {
   e.preventDefault();
   if (
     inputCloseUsername.value === currentAccount.username &&
-    Number(inputClosePin.value) === currentAccount.pin
+    +(inputClosePin.value) === currentAccount.pin
   ) {
     const index = accounts.findIndex(
       acc => acc.username === currentAccount.username
@@ -292,121 +292,3 @@ btnSort.addEventListener('click', function (e) {
   displayMovements(currentAccount.movements, !sorted);
   sorted = !sorted;
 });
-
-/////////////////////////////////////////////////
-/////////////////////////////////////////////////
-// LECTURES
-
-// const currencies = new Map([
-//   ['USD', 'United States dollar'],
-//   ['EUR', 'Euro'],
-//   ['GBP', 'Pound sterling'],
-// ]);
-
-// const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
-
-/////////////////////////////////////////////////
-
-/*
-let arr = ['a', 'b', 'c', 'd', 'e', 'f'];
-
-// SLICE
-console.log(arr.slice(2));
-console.log(arr.slice(2, 4));
-
-console.log(arr.slice(-2));
-console.log(arr.slice(-1));
-console.log(arr.slice(1, -2));
-
-console.log(arr.slice());
-console.log([...arr]); // SPREAD OPERATOR DOES THE SAME AS ABOVE
-
-// SPLICE
-
-console.log(arr.splice(2)); // REMOVES 2 ELEMENTS FROM THE ORIGINAL ARRAY
-console.log(arr.splice(-1)); // -1 is always the last element
-console.log(arr);
-
-// REVERSE
-
-arr = ['a', 'b', 'c', 'd', 'e'];
-const arr2 = ['j', 'i', 'h', 'g', 'f'];
-console.log(arr2.reverse());
-console.log(arr2); // ORIGINAL IS MUTATED - WILL NOW BE AT REVERSED STATE
-
-// CONCAT - MERGES TWO ARRAYS
-const letters = arr.concat(arr2);
-
-console.log(letters);
-console.log([...arr, ...arr2]); // SAME AS ABOVE
-
-// JOIN
-
-console.log(letters.join(' - '));
-
-// AT
-
-const arr = [23, 11, 64];
-
-console.log(arr[0]);
-console.log(arr.at(0)); // SAME AS ABOVE
-
-
-// GETTING THE LAST ELEMENT
-
-console.log(arr[arr.length - 1]);
-console.log(arr.slice(-1)); // SHOWS AS AN ARRAY - ADD A [0] AT THE END TO MAKE A NUMBER
-console.log(arr.slice(-1)[0]);
-
-console.log(arr.at(-1)); // NEW EASIER WAY TO GET LAST ELEMENT
-
-console.log('jonas'.at(2));
-*/
-
-/*
-// LOOPING ARRAYS WITH EACH OTHER
-
-const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
-
-// for (const movement of movements) {
-for (const [i, movement] of movements.entries()) {
-  if (movement > 0) {
-    console.log(`Movement ${i + 1}: You deposited ${movement}`);
-  } else {
-    console.log(`Movement ${i + 1}: You withdrew ${Math.abs(movement)}`);
-  }
- }
-
-console.log('-----forEach-----');
-
-movements.forEach(function (mov, i, arr) {
-  if (mov > 0) {
-    console.log(`Movement ${i + 1}: You deposited ${mov}`);
-  } else {
-    console.log(`Movement ${i + 1}: You withdrew ${Math.abs(mov)}`);
-  }
-});
-
-// CAN NOT BREAK OUT OF A FOR EACH LOOP
-
-*/
-
-// Maps
-
-// const currencies = new Map([
-//   ['USD', 'United States dollar'],
-//   ['EUR', 'Euro'],
-//   ['GBP', 'Pound sterling'],
-// ]);
-
-// currencies.forEach(function (value, key, map) {
-//   console.log(`${key}: ${value}`);
-// });
-
-// // Set
-
-// const currenciesUnique = new Set(['USD', 'GBP', 'USD', 'EUR', 'EUR']);
-// console.log(currenciesUnique);
-// currencies.forEach(function (value, key, map) {
-//   console.log(`${key}: ${value}`); // KEY DOESN'T EXIST IN SET
-//   console.log(currenciesUnique);
