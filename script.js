@@ -309,6 +309,9 @@ btnLoan.addEventListener('click', function (e) {
 
   // SOME TO TEST FOR SOMETHING
   if (amount > 0 && currentAccount.movements.some(mov => mov >= amount * 0.1)) {
+    setTimeout(function () {
+      
+   
     // Add movement
     currentAccount.movements.push(amount);
 
@@ -317,6 +320,8 @@ btnLoan.addEventListener('click', function (e) {
 
     // Update UI
     updateUI(currentAccount);
+
+    }, 2500);
 
     // Reset the input field
     inputLoanAmount.value = '';
