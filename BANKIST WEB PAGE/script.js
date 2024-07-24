@@ -34,4 +34,44 @@ document.addEventListener('keydown', function (e) {
   }
 });
 
+///////////////////////////////////////////////////////////////////
 
+// Selecting elements
+console.log(document.documentElement);
+
+console.log(document.head);
+
+console.log(document.body);
+
+const header = document.querySelector('.header');
+const allSections = document.querySelectorAll('.section');
+console.log(allSections);
+
+document.getElementById('section--1');
+
+document.getElementsByClassName('btn');
+
+const allButtons = document.getElementsByTagName('button');
+console.log(allButtons);
+
+// Creating and inserting elements
+// .insertAdjacentHTML
+
+const message = document.createElement('div');
+message.classList.add('cookie-message');
+message.textContent =
+  'We use cookies for improved functionality and analytics.';
+message.innerHTML =
+  'We use cookies for improved functionality and analytics. <button class="btn btn--close-cookie">Okay</button>';
+
+// header.prepend(message);
+header.append(message);
+// header.before(message);
+// header.after(message);
+
+// Deleting elements
+document.querySelector('.btn--close-cookie')
+  .addEventListener('click', function () {
+    // message.parentElement.removeChild(message); // OLD WAY
+    message.remove();
+  });
