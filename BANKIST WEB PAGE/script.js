@@ -75,3 +75,46 @@ document.querySelector('.btn--close-cookie')
     // message.parentElement.removeChild(message); // OLD WAY
     message.remove();
   });
+
+
+
+  // Styles
+
+  message.style.backgroundColor = '#37383d';
+  message.style.width = '120%';
+  message.style.height = Number.parseFloat(getComputedStyle(message).height, 10) + 20 + 'px'; // NEW WAY
+
+  console.log(getComputedStyle(message).height);
+
+// document.documentElement.style.setProperty('--color-primary', 'orangered');
+
+  /*
+// Attributes
+const logo = document.querySelector('.nav__logo');
+console.log(logo.alt);
+console.log(logo.src);
+console.log(logo.className);
+
+logo.alt = 'Beautiful minimalist logo';
+
+// Non-standard
+console.log(logo.designer);
+// logo.className = 'jonas';
+
+const link = document.querySelector('.nav__link--btn');
+link.href = 'https://www.google.com/';
+link.target = '_blank';
+link.textContent = 'Google';
+link.title = 'Search';
+console.log(link);
+
+// Data attributes
+console.log(logo.dataset.versionNumber);
+
+// Classes
+logo.classList.add('c', 'j');
+logo.classList.remove('c', 'j');
+logo.classList.toggle('c');
+logo.classList.contains('c'); // not includes!
+logo.classList.replace('c', 'k');
+*/
