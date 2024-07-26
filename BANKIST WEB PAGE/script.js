@@ -149,3 +149,5 @@ btnScrollTo.addEventListener('click', function (e) {
   // NEW WAY (ONLY WORKS IN NEWER BROWSERS)
   section1.scrollIntoView({ behavior: 'smooth' });
 });
+
+
