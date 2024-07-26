@@ -119,6 +119,7 @@ logo.classList.contains('c'); // not includes!
 logo.classList.replace('c', 'k');
 */
 
+// Scroll Effect (Smooth Scrolling)
 const btnScrollTo = document.querySelector('.btn--scroll-to');
 const section1 = document.querySelector('#section--1');
 
@@ -135,4 +136,16 @@ btnScrollTo.addEventListener('click', function (e) {
     document.documentElement.clientHeight,
     document.documentElement.clientWidth
   ); 
+
+  // Scrolling
+  // OLD WAY
+  // window.scrollTo(s1coords.left + window.pageXOffset, s1coords.top + window.pageYOffset);
+  // window.scrollTo({
+  //   left: s1coords.left + window.pageXOffset,
+  //   top: s1coords.top + window.pageYOffset,
+  //   behavior: 'smooth',
+  // });
+
+  // NEW WAY (ONLY WORKS IN NEWER BROWSERS)
+  section1.scrollIntoView({ behavior: 'smooth' });
 });
