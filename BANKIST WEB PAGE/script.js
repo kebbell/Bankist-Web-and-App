@@ -152,29 +152,29 @@ btnScrollTo.addEventListener('click', function (e) {
 });
 
 // Types of Events and Event Handlers
-const h1 = document.querySelector('h1');
+// const h1 = document.querySelector('h1');
 
-// CAN ADD MULTIPLE LISTENERS AND REMOVE THEM IF NEEDED
-// h1.addEventListener('mouseenter', function (e) {
+// // CAN ADD MULTIPLE LISTENERS AND REMOVE THEM IF NEEDED
+// // h1.addEventListener('mouseenter', function (e) {
+// //   alert('addEventListener: Great! You are reading the heading :D');
+// // }); 
+
+// // h1.onmouseenter = function (e) {
+// //   alert('onmouseenter: Great! You are reading the heading :D')
+// // };
+
+// // TO REMOVE A LISTENER
+// // WILL SHOW EVENT ONLY ONCE AS IT GOES IN ONCE AND IS THEN REMOVED
+
+// // REMOVES EVENT AFTER THE TIMEOUT IS SET
+// const alert1 = function (e) {
 //   alert('addEventListener: Great! You are reading the heading :D');
-// }); 
 
-// h1.onmouseenter = function (e) {
-//   alert('onmouseenter: Great! You are reading the heading :D')
 // };
 
-// TO REMOVE A LISTENER
-// WILL SHOW EVENT ONLY ONCE AS IT GOES IN ONCE AND IS THEN REMOVED
+// h1.addEventListener('mouseenter', alert1);
 
-// REMOVES EVENT AFTER THE TIMEOUT IS SET
-const alert1 = function (e) {
-  alert('addEventListener: Great! You are reading the heading :D');
-
-};
-
-h1.addEventListener('mouseenter', alert1);
-
-setTimeout (function () {
-  h1.removeEventListener('mouseenter', alert1);
-}, 3000);
+// setTimeout (function () {
+//   h1.removeEventListener('mouseenter', alert1);
+// }, 3000);
 
