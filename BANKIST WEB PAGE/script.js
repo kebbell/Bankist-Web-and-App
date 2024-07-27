@@ -143,13 +143,15 @@ document.querySelector('.nav__links').addEventListener('click', function (e) {
 
 
 
+
+
 ///////////////////////////////////////
 // Styles
 
 message.style.backgroundColor = '#37383d';
 message.style.width = '120%';
 message.style.height =
-  Number.parseFloat(getComputedStyle(message).height, 10) + 20 + 'px'; // NEW WAY
+  Number.parseFloat(getComputedStyle(message).height, 10) + 15 + 'px'; // NEW WAY
 
 console.log(getComputedStyle(message).height);
 
