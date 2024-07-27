@@ -123,6 +123,7 @@ logo.classList.replace('c', 'k');
 const btnScrollTo = document.querySelector('.btn--scroll-to');
 const section1 = document.querySelector('#section--1');
 
+
 btnScrollTo.addEventListener('click', function (e) {
   const s1coords = section1.getBoundingClientRect();
   console.log(s1coords);
@@ -150,6 +151,9 @@ btnScrollTo.addEventListener('click', function (e) {
   section1.scrollIntoView({ behavior: 'smooth' });
 });
 
+const h1 = document.querySelector('h1');
 
-
+h1.addEventListener('mouseenter', function (e) {
+  alert('addEventListener: Great! You are reading the heading :D');
+});
 
