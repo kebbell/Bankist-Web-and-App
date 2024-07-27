@@ -189,7 +189,11 @@ const randomColor = () =>
 document.querySelector('.nav__link').addEventListener('click', function (e) {
   this.style.backgroundColor = randomColor();
   console.log('LINK', e.target, e.currentTarget);
-  // e.stopPropagation();
+  console.log(e.currentTarget === this);
+  // STOP PROPAGATION
+  // e.stopPropagation(); 
+  // STOPS THE BUBBLING UP SO ONLY THIS CHILD WILL WORK AND NO PARENTS
+  // NOT THE BEST IDEA TO STOP THE PROPAGATION
 });
 
 document.querySelector('.nav__links').addEventListener('click', function (e) {
@@ -201,5 +205,7 @@ document.querySelector('.nav').addEventListener('click', function (e) {
   this.style.backgroundColor = randomColor();
   console.log('NAV', e.target, e.currentTarget);
 });
+
+
 
 
