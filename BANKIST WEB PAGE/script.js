@@ -70,25 +70,25 @@ header.append(message);
 // header.after(message);
 
 // Deleting elements
-document.querySelector('.btn--close-cookie')
+document
+  .querySelector('.btn--close-cookie')
   .addEventListener('click', function () {
     // message.parentElement.removeChild(message); // OLD WAY
     message.remove();
   });
 
+// Styles
 
+message.style.backgroundColor = '#37383d';
+message.style.width = '120%';
+message.style.height =
+  Number.parseFloat(getComputedStyle(message).height, 10) + 20 + 'px'; // NEW WAY
 
-  // Styles
-
-  message.style.backgroundColor = '#37383d';
-  message.style.width = '120%';
-  message.style.height = Number.parseFloat(getComputedStyle(message).height, 10) + 20 + 'px'; // NEW WAY
-
-  console.log(getComputedStyle(message).height);
+console.log(getComputedStyle(message).height);
 
 // document.documentElement.style.setProperty('--color-primary', 'orangered');
 
-  /*
+/*
 // Attributes
 const logo = document.querySelector('.nav__logo');
 console.log(logo.alt);
@@ -123,7 +123,6 @@ logo.classList.replace('c', 'k');
 const btnScrollTo = document.querySelector('.btn--scroll-to');
 const section1 = document.querySelector('#section--1');
 
-
 btnScrollTo.addEventListener('click', function (e) {
   const s1coords = section1.getBoundingClientRect();
   console.log(s1coords);
@@ -136,7 +135,7 @@ btnScrollTo.addEventListener('click', function (e) {
     'height/width viewport',
     document.documentElement.clientHeight,
     document.documentElement.clientWidth
-  ); 
+  );
 
   // Scrolling
   // OLD WAY
@@ -157,7 +156,7 @@ btnScrollTo.addEventListener('click', function (e) {
 // // CAN ADD MULTIPLE LISTENERS AND REMOVE THEM IF NEEDED
 // // h1.addEventListener('mouseenter', function (e) {
 // //   alert('addEventListener: Great! You are reading the heading :D');
-// // }); 
+// // });
 
 // // h1.onmouseenter = function (e) {
 // //   alert('onmouseenter: Great! You are reading the heading :D')
@@ -191,7 +190,7 @@ document.querySelector('.nav__link').addEventListener('click', function (e) {
   console.log('LINK', e.target, e.currentTarget);
   console.log(e.currentTarget === this);
   // STOP PROPAGATION
-  // e.stopPropagation(); 
+  // e.stopPropagation();
   // STOPS THE BUBBLING UP SO ONLY THIS CHILD WILL WORK AND NO PARENTS
   // NOT THE BEST IDEA TO STOP THE PROPAGATION
 });
@@ -201,11 +200,13 @@ document.querySelector('.nav__links').addEventListener('click', function (e) {
   console.log('CONTAINER', e.target, e.currentTarget);
 });
 
-document.querySelector('.nav').addEventListener('click', function (e) {
-  this.style.backgroundColor = randomColor();
-  console.log('NAV', e.target, e.currentTarget);
-});
-
-
-
+document.querySelector('.nav').addEventListener(
+  'click',
+  function (e) {
+    this.style.backgroundColor = randomColor();
+    console.log('NAV', e.target, e.currentTarget);
+  },
+  // true // LISTENS TO THE EVENT TRAVELING DOWN, THE OTHER ARE BUBBLING UP
+  // ^ Capturing ^ NOT USED MUCH TODAY AND DEFAULT IS SET TO FALSE //
+);
 
