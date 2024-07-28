@@ -12,8 +12,6 @@ const tabs = document.querySelectorAll('.operations__tab');
 const tabsContainer = document.querySelector('.operations__tab-container');
 const tabsContent = document.querySelectorAll('.operations__content');
 
-
-
 ///////////////////////////////////////
 // Modal window
 
@@ -85,7 +83,6 @@ document
     // message.parentElement.removeChild(message); // OLD WAY
     message.remove();
   });
-
 
 ///////////////////////////////////////
 // Scroll Effect (Smooth Scrolling)
@@ -171,8 +168,6 @@ tabsContainer.addEventListener('click', function (e) {
 
 // ^ ADDING AND REMOVING CLASSES TO MANIPULATE THE PAGE ^
 
-
-
 ///////////////////////////////////////
 // Styles
 
@@ -182,6 +177,20 @@ message.style.height =
   Number.parseFloat(getComputedStyle(message).height, 10) + 15 + 'px'; // NEW WAY
 
 console.log(getComputedStyle(message).height);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -312,7 +321,6 @@ logo.classList.replace('c', 'k');
 //   // true // LISTENS TO THE EVENT TRAVELING DOWN, THE OTHER ARE BUBBLING UP
 //   // ^ Capturing ^ NOT USED MUCH TODAY AND DEFAULT IS SET TO FALSE //
 // );
-
 
 // EVENT DELEGATION & IMPLEMENTING PAGE NAVIGATION
 // DOM TRAVERSING
