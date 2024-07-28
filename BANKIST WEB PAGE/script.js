@@ -12,6 +12,8 @@ const tabs = document.querySelectorAll('.operations__tab');
 const tabsContainer = document.querySelector('.operations__tab-container');
 const tabsContent = document.querySelectorAll('.operations__content');
 
+const nav = document.querySelector('.nav');
+
 ///////////////////////////////////////
 // Modal window
 
@@ -169,6 +171,39 @@ tabsContainer.addEventListener('click', function (e) {
 // ^ ADDING AND REMOVING CLASSES TO MANIPULATE THE PAGE ^
 
 ///////////////////////////////////////
+// MENU FADE ANIMATION (HOVER FADE ANIMATION)
+const handleHover = function (e) {
+  // console.log(this, e.currentTarget);
+  if (e.target.classList.contains('nav__link')) {
+    const link = e.target;
+    const siblings = link.closest('.nav').querySelectorAll('.nav__link');
+    const logo = link.closest('.nav').querySelector('img');
+
+    siblings.forEach(el => {
+      if (el !== link) el.style.opacity = this;
+    });
+    logo.style.opacity = this;
+  }
+};
+
+// Passing "argument" into handler
+nav.addEventListener('mouseover', handleHover.bind(0.5));
+// BIND RETURNS A NEW FUNCTION
+nav.addEventListener('mouseout', handleHover.bind(1));
+// BIND RETURNS A NEW FUNCTION
+
+
+///////////////////////////////////////
+// STICKY NAVIGATION
+const initialCoords = section1.getBoundingClientRect();
+console.log(initialCoords);
+
+window.addEventListener('scroll', function () {
+  if (window.scrollY > initialCoords.top) nav.classList.add('sticky');
+  else nav.classList.remove('sticky');
+});
+
+///////////////////////////////////////
 // Styles
 
 message.style.backgroundColor = '#37383d';
@@ -177,26 +212,6 @@ message.style.height =
   Number.parseFloat(getComputedStyle(message).height, 10) + 15 + 'px'; // NEW WAY
 
 console.log(getComputedStyle(message).height);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // document.documentElement.style.setProperty('--color-primary', 'orangered');
 
