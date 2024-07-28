@@ -195,21 +195,50 @@ nav.addEventListener('mouseout', handleHover.bind(1));
 
 ///////////////////////////////////////
 // STICKY NAVIGATION
-const initialCoords = section1.getBoundingClientRect();
-console.log(initialCoords);
+// CAN BE SLOW ON OLD DEVICES
+const initialCoords = section1.getBoundingClientRect(); // GETS THE COORDINATES OF THE TOP LEFT CORNER OF THE ELEMENT
+console.log(initialCoords); // {top: 0, right: 0, bottom: 4992, left: 0, x: 0, y: 0}
 
 window.addEventListener('scroll', function () {
   if (window.scrollY > initialCoords.top) nav.classList.add('sticky');
   else nav.classList.remove('sticky');
 });
 
+
+///////////////////////////////////////
+// OBSERVER API
+const obsCallback = function (entries, observer) {
+  entries.forEach(entry => {
+    console.log(entry);
+  });
+};
+const obsOptions = {
+  root: null,
+  threshold: [0, 0.2],
+};
+const observer = new IntersectionObserver(obsCallback, obsOptions);
+
+
+
+window.addEventListener('scroll', function () {
+  const cookieMessage = document.querySelector('.cookie-message');
+  const bottomOfPage = document.body.scrollHeight - window.innerHeight - 40;
+
+  if (window.scrollY > bottomOfPage) {
+    cookieMessage.classList.add('sticky');
+  } else {
+    cookieMessage.classList.remove('sticky');
+  }
+});
+
 ///////////////////////////////////////
 // Styles
+// COOKIE MESSAGE
 
 message.style.backgroundColor = '#37383d';
 message.style.width = '120%';
 message.style.height =
-  Number.parseFloat(getComputedStyle(message).height, 10) + 15 + 'px'; // NEW WAY
+  Number.parseFloat(getComputedStyle(message).height, 10) + 10 + 'px'; // NEW WAY
 
 console.log(getComputedStyle(message).height);
 

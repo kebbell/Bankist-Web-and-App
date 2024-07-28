@@ -663,13 +663,18 @@ h4 {
 
 /* COOKIE MESSAGE */
 .cookie-message {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
-  width: 100%;
-  background-color: white;
   color: #f9f9f9;
   font-size: 1.5rem;
   font-weight: 400;
-  margin-top: 5px;
+  padding: .5rem;
+  border-top: .5px solid #ddd;
+  z-index: 9999;
 }
+
