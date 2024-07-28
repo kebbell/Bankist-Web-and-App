@@ -13,6 +13,8 @@ const tabsContainer = document.querySelector('.operations__tab-container');
 const tabsContent = document.querySelectorAll('.operations__content');
 
 const nav = document.querySelector('.nav');
+const header = document.querySelector('.header');
+const allSections = document.querySelectorAll('.section');
 
 ///////////////////////////////////////
 // Modal window
@@ -52,8 +54,7 @@ console.log(document.head);
 
 console.log(document.body);
 
-const header = document.querySelector('.header');
-const allSections = document.querySelectorAll('.section');
+
 console.log(allSections);
 
 document.getElementById('section--1');
@@ -196,27 +197,70 @@ nav.addEventListener('mouseout', handleHover.bind(1));
 ///////////////////////////////////////
 // STICKY NAVIGATION
 // CAN BE SLOW ON OLD DEVICES
-const initialCoords = section1.getBoundingClientRect(); // GETS THE COORDINATES OF THE TOP LEFT CORNER OF THE ELEMENT
-console.log(initialCoords); // {top: 0, right: 0, bottom: 4992, left: 0, x: 0, y: 0}
+// const initialCoords = section1.getBoundingClientRect(); // GETS THE COORDINATES OF THE TOP LEFT CORNER OF THE ELEMENT
+// console.log(initialCoords); // {top: 0, right: 0, bottom: 4992, left: 0, x: 0, y: 0}
 
-window.addEventListener('scroll', function () {
-  if (window.scrollY > initialCoords.top) nav.classList.add('sticky');
-  else nav.classList.remove('sticky');
-});
+// window.addEventListener('scroll', function () {
+//   if (window.scrollY > initialCoords.top) nav.classList.add('sticky');
+//   else nav.classList.remove('sticky');
+// });
 
 
 ///////////////////////////////////////
+// STICKY NAVIGATION: INTERSECTION OBSERVER API
 // OBSERVER API
-const obsCallback = function (entries, observer) {
-  entries.forEach(entry => {
-    console.log(entry);
-  });
+// const obsCallback = function (entries, observer) {
+//   entries.forEach(entry => {
+//     console.log(entry);
+//   });
+// };
+// const obsOptions = {
+//   root: null,
+//   threshold: [0, 0.2],
+// };
+// const observer = new IntersectionObserver(obsCallback, obsOptions);
+
+// observer.observe(section1);
+
+// STICKY NAVIGATION: INTERSECTION OBSERVER API
+// OBSERVER API
+const navHeight = nav.getBoundingClientRect().height;
+const stickyNav = function (entries) {
+  const [entry] = entries;
+  // console.log(entry);
+  if (!entry.isIntersecting) nav.classList.add('sticky');
+  else nav.classList.remove('sticky');
 };
-const obsOptions = {
+const headerObserver = new IntersectionObserver(stickyNav, {
   root: null,
-  threshold: [0, 0.2],
+  threshold: 0,
+  rootMargin: `-${navHeight}px`, // WHEN THE STICKY COMES ONTO THE PAGE
+});
+headerObserver.observe(header);
+
+
+
+///////////////////////////////////////
+// LAZY LOADING IMAGES
+const imgTargets = document.querySelectorAll('img[data-src]');
+
+const loadImg = function (entries, observer) {
+  const [entry] = entries;
+  if (!entry.isIntersecting) return;
+  // Replace src with data-src
+  entry.target.src = entry.target.dataset.src;
+  entry.target.addEventListener('load', function () {
+    entry.target.classList.remove('lazy-img');
+  });
+  observer.unobserve(entry.target);
 };
-const observer = new IntersectionObserver(obsCallback, obsOptions);
+const imgObserver = new IntersectionObserver(loadImg, {
+  root: null,
+  threshold: 0,
+  rootMargin: '200px',
+});
+imgTargets.forEach(img => imgObserver.observe(img));
+
 
 
 
