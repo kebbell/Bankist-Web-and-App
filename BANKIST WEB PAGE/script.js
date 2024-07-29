@@ -238,6 +238,8 @@ const headerObserver = new IntersectionObserver(stickyNav, {
 });
 headerObserver.observe(header);
 
+
+
 ///////////////////////////////////////
 // REVEAL SECTIONS ON SCROLL
 const revealSection = function (entries, observer) {
@@ -254,6 +256,8 @@ allSections.forEach(function (section) {
   sectionObserver.observe(section);
   section.classList.add('section--hidden');
 });
+
+
 
 ///////////////////////////////////////
 // Lazy loading images
