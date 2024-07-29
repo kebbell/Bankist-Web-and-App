@@ -241,7 +241,7 @@ headerObserver.observe(header);
 ///////////////////////////////////////
 // REVEAL SECTIONS ON SCROLL
 const revealSection = function (entries, observer) {
-  const [entry] = entries;
+  const [entry] = entries; // [ENTRY] IS THE FIRST ENTRY
   if (!entry.isIntersecting) return;
   entry.target.classList.remove('section--hidden');
   observer.unobserve(entry.target);
@@ -263,7 +263,7 @@ allSections.forEach(function (section) {
 const imgTargets = document.querySelectorAll('img[data-src]');
 
 const loadImg = function (entries, observer) {
-  const [entry] = entries;
+  const [entry] = entries; // [ENTRY] IS THE FIRST ENTRY
   if (!entry.isIntersecting) return;
   // Replace src with data-src
   entry.target.src = entry.target.dataset.src;
