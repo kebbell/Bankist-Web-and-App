@@ -255,6 +255,8 @@ allSections.forEach(function (section) {
   section.classList.add('section--hidden');
 });
 
+///////////////////////////////////////
+// Lazy loading images
 
 ///////////////////////////////////////
 // LAZY LOADING IMAGES
