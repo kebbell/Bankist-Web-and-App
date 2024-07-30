@@ -284,6 +284,10 @@ const imgObserver = new IntersectionObserver(loadImg, {
 imgTargets.forEach(img => imgObserver.observe(img));
 
 
+///////////////////////////////////////
+// BUILDING A SLIDER COMPONENT
+
+
 
 
 window.addEventListener('scroll', function () {
