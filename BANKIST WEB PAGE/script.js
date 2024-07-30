@@ -279,7 +279,7 @@ const loadImg = function (entries, observer) {
 const imgObserver = new IntersectionObserver(loadImg, {
   root: null,
   threshold: 0,
-  rootMargin: '200px',
+  rootMargin: '100px',
 });
 imgTargets.forEach(img => imgObserver.observe(img));
 
@@ -289,6 +289,9 @@ imgTargets.forEach(img => imgObserver.observe(img));
 
 
 
+
+//////////////////////////////////////
+// COOKIE MESSAGE
 
 window.addEventListener('scroll', function () {
   const cookieMessage = document.querySelector('.cookie-message');
