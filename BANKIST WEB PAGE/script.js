@@ -54,7 +54,6 @@ console.log(document.head);
 
 console.log(document.body);
 
-
 console.log(allSections);
 
 document.getElementById('section--1');
@@ -193,7 +192,6 @@ nav.addEventListener('mouseover', handleHover.bind(0.5));
 nav.addEventListener('mouseout', handleHover.bind(1));
 // BIND RETURNS A NEW FUNCTION
 
-
 ///////////////////////////////////////
 // STICKY NAVIGATION
 // CAN BE SLOW ON OLD DEVICES
@@ -204,7 +202,6 @@ nav.addEventListener('mouseout', handleHover.bind(1));
 //   if (window.scrollY > initialCoords.top) nav.classList.add('sticky');
 //   else nav.classList.remove('sticky');
 // });
-
 
 ///////////////////////////////////////
 // STICKY NAVIGATION: INTERSECTION OBSERVER API
@@ -238,8 +235,6 @@ const headerObserver = new IntersectionObserver(stickyNav, {
 });
 headerObserver.observe(header);
 
-
-
 ///////////////////////////////////////
 // REVEAL SECTIONS ON SCROLL
 const revealSection = function (entries, observer) {
@@ -254,10 +249,8 @@ const sectionObserver = new IntersectionObserver(revealSection, {
 });
 allSections.forEach(function (section) {
   sectionObserver.observe(section);
-  section.classList.add('section--hidden');
+  // section.classList.add('section--hidden');
 });
-
-
 
 ///////////////////////////////////////
 // Lazy loading images
@@ -283,14 +276,66 @@ const imgObserver = new IntersectionObserver(loadImg, {
 });
 imgTargets.forEach(img => imgObserver.observe(img));
 
-
 ///////////////////////////////////////
 // BUILDING A SLIDER COMPONENT
+// PART 1
+// SLIDER
 
+const slides = document.querySelectorAll('.slide');
+const btnLeft = document.querySelector('.slider__btn--left');
+const btnRight = document.querySelector('.slider__btn--right');
+const dotContainer = document.querySelector('.dots');
 
+let currentSlide = 0;
+const maxSlide = slides.length;
 
+slides.forEach((slide, index) => {
+  slide.style.transform = `translateX(${100 * index}%)`;
+  // 0%, 100%, 200%, 300% IS WHERE EACH SLIDE WILL BE
+});
 
+const goToSlide = function (slide) {
+  slides.forEach((s, i) => {
+    s.style.transform = `translateX(${100 * (i - slide)}%)`;
+  });
+};
 
+// NEXT AND PREVIOUS BUTTON
+
+btnRight.addEventListener('click', function () {
+  currentSlide++;
+  if (currentSlide === maxSlide) currentSlide = 0;
+  // console.log(currentSlide);
+  goToSlide(currentSlide);
+});
+// currentSlide = 2;
+btnLeft.addEventListener('click', function () {
+  currentSlide--;
+  if (currentSlide < 0) currentSlide = maxSlide - 1;
+  // console.log(currentSlide);
+  goToSlide(currentSlide);
+});
+// currentSlide = 2;
+
+// PART 2
+// DOTS
+const createDots = function () {
+  slides.forEach(function (_, i) {
+    dotContainer.insertAdjacentHTML(
+      'beforeend',
+      `<button class="dots__dot" data-slide="${i}"></button>`
+    );
+  });
+};
+createDots();
+dotContainer.addEventListener('click', function (e) {
+  if (e.target.classList.contains('dots__dot')) {
+    const { slide } = e.target.dataset;
+    slides.forEach((s, index) => {
+      s.style.transform = `translateX(${100 * (index - slide)}%)`;
+    });
+  }
+});
 
 //////////////////////////////////////
 // COOKIE MESSAGE
