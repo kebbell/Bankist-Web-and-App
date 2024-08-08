@@ -340,6 +340,10 @@ dotContainer.addEventListener('click', function (e) {
 });
 
 //////////////////////////////////////
+
+
+
+//////////////////////////////////////
 // COOKIE MESSAGE
 
 window.addEventListener('scroll', function () {
@@ -353,6 +357,8 @@ window.addEventListener('scroll', function () {
   }
 });
 
+
+
 ///////////////////////////////////////
 // Styles
 // COOKIE MESSAGE
@@ -365,6 +371,12 @@ message.style.height =
 console.log(getComputedStyle(message).height);
 
 // document.documentElement.style.setProperty('--color-primary', 'orangered');
+
+
+
+
+
+
 
 /*
 // Attributes
