@@ -41,6 +41,7 @@ body {
   transition: transform 1s, opacity 1s;
 }
 
+
 .section--hidden {
   opacity: 0;
   transform: translateY(8rem);
