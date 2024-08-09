@@ -345,8 +345,6 @@ dotContainer.addEventListener('click', function (e) {
 
 
 
-
-
 //////////////////////////////////////
 // COOKIE MESSAGE
 
