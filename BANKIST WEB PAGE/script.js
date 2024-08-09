@@ -343,8 +343,6 @@ dotContainer.addEventListener('click', function (e) {
 
 // 
 
- 
-
 
 
 
