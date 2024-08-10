@@ -316,6 +316,8 @@ const previousSlide = function () {
   goToSlide(currentSlide);
 };
 
+
+
 btnRight.addEventListener('click', nextSlide);
 btnLeft.addEventListener('click', previousSlide);
 
